@@ -1,6 +1,24 @@
 from django.shortcuts import render, redirect
-from .models import Event
-from .forms import EventForm
+
+from django.contrib.auth import (authenticate, get_user_model, login, logout)
+
+from .forms import UserLoginForm, UserRegisterForm
+
+def login_view(request):
+    next = request.GET.get('next')
+    form = UserLoginForm(request.POST or None)
+    if form.is_valid():
+        username = form.cleaned.data.get('username')
+        password = form.cleaned.data.get('password')
+        user = authenticate(username=username, password=password)
+        login(request,user)
+        if next:
+            return redirect(next)
+        return redirect('/')
+    context = {
+        'form': form
+    }
+    return render (request, "2login.html", context)
 
 
 def list_event(request):
@@ -9,7 +27,7 @@ def list_event(request):
 
 
 def create_event(request):
-    form = EventForm(request.POST or None)
+    form = forms.EventForm(request.POST or None)
 
     if form.is_valid():
         form.save()
@@ -20,7 +38,7 @@ def create_event(request):
 
 def update_event(request, id):
     event = Event.objects.get(id=id)
-    form = EventForm(request.POST or None, instance=event)
+    form = forms.EventForm(request.POST or None, instance=event)
 
     if form.is_valid():
         form.save()

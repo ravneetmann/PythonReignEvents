@@ -1,11 +1,11 @@
 from django.urls import path
-from .views import list_event, create_event, update_event, delete_event
+from . import views
 
 urlpatterns =  [
-    path('', list_event, name='list_event'),
-    path('new', create_event, name='create_event'),
-    path('update/<int:id>/', update_event, name='update_event'),
-    path('delete/<int:id>/', delete_event, name='delete_event'),
+    path('', views.list_event, name='list_event'),
+    path('new', views.create_event, name='create_event'),
+    path('update/<int:id>/', views.update_event, name='update_event'),
+    path('delete/<int:id>/', views.delete_event, name='delete_event'),
 ]
 
 
