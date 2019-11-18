@@ -14,10 +14,18 @@
     <title>Document</title>
 </head>
 <body>
-    <form method="post">
+
+    <h1>Register User</h1>
+
+    <form method="POST">
         {% csrf_token %}
-        <h2>Are you sure you want to remove {{ event.description }} ?</h2>
-        <button type="submit">Confirm</button>
+        {{ form.as_p }}
+        <button type="submit">Sign up</button>
     </form>
+
+
+{#    {% if event %}#}
+{#        <a href="{% url 'delete_event' event.id %}">Delete</a>#}
+{#    {% endif %}#}
 </body>
 </html>

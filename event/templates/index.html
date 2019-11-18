@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <style>
@@ -8,16 +8,15 @@
             }
     </style>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content=""width="device-width, intial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <title>Document</title>
+    <title>Reign Events</title>
 </head>
 <body>
     <div class="container">
-        <!-- NAVBAR -->
+         <!-- NAVBAR -->
         <div class="block">
             <nav class="navbar">
                 <div class="navbar-start">
@@ -33,7 +32,7 @@
                         </span>
                     </a>
 
-                    <a href="" class="navbar-item">
+                    <a href="https://www.instagram.com/reigneventsmtl/?hl=en" class="navbar-item">
                         <span class="icon">
                             <i class="fa fa-instagram"></i>
                         </span>
@@ -45,27 +44,22 @@
                     <a href="#" class="navbar-item">About Us</a>
                     <a href="#" class="navbar-item">Contact</a>
                 </div>
-
             </nav>
+        </div>
+
+
+        <!-- CONTENT -->
+        <div class="box is-expanded">
+        <p class="content is-medium has-text-centered">Welcome to Reign Events!</p>
+
+                <!-- BUTTONS -->
+            <div class="has-text-centered">
+                <a class="button is-large is-active" href="{% url 'login'%}">Sign in</a>
+                <a class="button is-large is-active" href="{% url 'signup'%}">Register</a>
+            </div>
 
         </div>
-        <h1>New Event</h1>
-
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Save</button>
-        </form>
-
-{#        {% if user.is_employee %}#}
-{#        <p>This is an employee account.</p>#}
-{#        {% else %}#}
-{#        <p>Please login to see this page.</p>#}
-{#        {% endif %}#}
-{##}
-{#    {% if event %}#}
-{#        <a href="{% url 'delete_event' event.id %}">Delete</a>#}
-{#    {% endif %}#}
     </div>
+
 </body>
 </html>

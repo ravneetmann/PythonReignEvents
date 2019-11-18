@@ -1,6 +1,12 @@
 <!doctype html>
 <html lang="en">
 <head>
+    <style>
+        html {
+            background: url("https://wallpaperaccess.com/full/260161.jpg");
+            background-size: cover;
+            }
+    </style>
     <meta charset="UTF-8">
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
@@ -9,17 +15,41 @@
     <title>Document</title>
 </head>
 <body>
-    <ul>
-        {% for event in event %}
-            <div class="card">
-                <a href="{% url 'update_event' event.id %}">
-                    <li> {{ event.description }}</li>
-                    <br>
-                </a>
-            </div>
-        {% endfor %}
-    </ul>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Event Description </th>
+                <th> Event Budget </th>
+                <th> Event Date </th>
+                <th> Event Location </th>
+                <th> Delete? </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in event %}
+                <tr>
+                    <td> <a href="{% url 'update_event' event.id %}">{{ event.description }} </a> </td>
+                    <td> {{ event.budget }} </td>
+                    <td> {{ event.date }} </td>
+                    <td> {{ event.location }} </td>
+                    <td> <a href="{% url 'delete_event' event.id %}"> delete </a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <a href="{% url 'create_event' %}">New event</a>
+{#    <ul>#}
+{#        {% for event in event %}#}
+{#            <div class="card">#}
+{#                <a href="{% url 'update_event' event.id %}">#}
+{#                    <li> {{ event.description }}</li>#}
+{#                    <br>#}
+{#                </a>#}
+{#            </div>#}
+{#        {% endfor %}#}
+{#    </ul>#}
+
+    <a href="{% url 'create_event' %}">New event</a> <br>
+    <a href="{% url 'redirect_to_home' %}">Redirect to home</a>
 </body>
 </html>

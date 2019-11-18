@@ -1,19 +1,12 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-    <style>
-        html {
-            background: url("https://wallpaperaccess.com/full/260161.jpg");
-            background-size: cover;
-            }
-    </style>
     <meta charset="UTF-8">
-    <meta name="viewport"
-          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta name="viewport" content=""width="device-width, intial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <title>Document</title>
+    <title>Bulma Sandbox</title>
 </head>
 <body>
     <div class="container">
@@ -49,23 +42,27 @@
             </nav>
 
         </div>
-        <h1>New Event</h1>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Save</button>
-        </form>
+        <!--HEADINGS -->
+        <div class="block">
+            <h1 class="title is-1">Confirmation</h1>
 
-{#        {% if user.is_employee %}#}
-{#        <p>This is an employee account.</p>#}
-{#        {% else %}#}
-{#        <p>Please login to see this page.</p>#}
-{#        {% endif %}#}
-{##}
-{#    {% if event %}#}
-{#        <a href="{% url 'delete_event' event.id %}">Delete</a>#}
-{#    {% endif %}#}
-    </div>
+
+        <!--MESSAGES -->
+        <div class="block">
+        <article class="message is-success">
+            <div class="message-header">
+                <p>Employee Assignment Confirmation</p>
+            </div>
+            <div class="message-body">
+                {{ employee.username }} has been assigned to the event {{ event.description }}
+            </div>
+            <a href="{% url 'list_available_employees' event.id %}"> Go back </a>
+        </article>
+        </div>
+
+
+
+        </div>
 </body>
 </html>

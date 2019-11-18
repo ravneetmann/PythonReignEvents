@@ -12,12 +12,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <title>Reign Events</title>
 </head>
 <body>
-    <div class="container">
-        <!-- NAVBAR -->
+<div class="container">
+         <!-- NAVBAR -->
         <div class="block">
             <nav class="navbar">
                 <div class="navbar-start">
@@ -45,27 +45,31 @@
                     <a href="#" class="navbar-item">About Us</a>
                     <a href="#" class="navbar-item">Contact</a>
                 </div>
-
             </nav>
-
         </div>
-        <h1>New Event</h1>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Save</button>
-        </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th> Event Description </th>
+                <th> Event Budget </th>
+                <th> Event Date </th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for event in event %}
+                <tr>
+                    <td> <a href="{% url 'update_event' event.id %}">{{ event.description }} </a> </td>
+                    <td> {{ event.budget }} </td>
+                    <td> <a href="{% url 'list_available_employees' event.id %}"> {{ event.date }} </a> </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-{#        {% if user.is_employee %}#}
-{#        <p>This is an employee account.</p>#}
-{#        {% else %}#}
-{#        <p>Please login to see this page.</p>#}
-{#        {% endif %}#}
-{##}
-{#    {% if event %}#}
-{#        <a href="{% url 'delete_event' event.id %}">Delete</a>#}
-{#    {% endif %}#}
-    </div>
+
+    <a href="{% url 'create_event' %}">New event</a> <br>
+    <a href="{% url 'redirect_to_home' %}">Redirect to home</a>
+</div>
 </body>
 </html>

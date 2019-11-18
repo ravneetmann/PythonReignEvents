@@ -12,12 +12,12 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.min.css">
+    <title>Reign Events</title>
 </head>
 <body>
     <div class="container">
-        <!-- NAVBAR -->
+         <!-- NAVBAR -->
         <div class="block">
             <nav class="navbar">
                 <div class="navbar-start">
@@ -45,27 +45,40 @@
                     <a href="#" class="navbar-item">About Us</a>
                     <a href="#" class="navbar-item">Contact</a>
                 </div>
-
             </nav>
-
         </div>
-        <h1>New Event</h1>
 
-        <form method="POST">
-            {% csrf_token %}
-            {{ form }}
-            <button type="submit">Save</button>
-        </form>
+    <h1> Employee currently working the event </h1>
+    <ul>
+        {% for x in employee_working_event %}
+            <div class="card">
+                <a href="">
+                    <li> {{ x.username }}</li>
+                </a>
+                <a href="{% url 'remove_employee' event.id x.id %}">
+                    Remove
+                </a>
+            <br>
+            </div>
+        {% endfor %}
+    </ul>
 
-{#        {% if user.is_employee %}#}
-{#        <p>This is an employee account.</p>#}
-{#        {% else %}#}
-{#        <p>Please login to see this page.</p>#}
-{#        {% endif %}#}
-{##}
-{#    {% if event %}#}
-{#        <a href="{% url 'delete_event' event.id %}">Delete</a>#}
-{#    {% endif %}#}
+    <h1> Employee available to work the event </h1>
+    <ul>
+        {% for x in available_employee %}
+            <div class="card">
+                <a href="">
+                    <li> {{ x.username }}</li>
+                </a>
+                <a href="{% url 'assign_employee' event.id x.id %}">
+                    Assign
+                </a>
+            <br>
+            </div>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'redirect_to_home' %}">Redirect to home</a>
     </div>
 </body>
 </html>
